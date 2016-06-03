@@ -12,16 +12,30 @@ public class RandomAccessFileDemo {
 		if(!demo.exists()) demo.createNewFile();
 		RandomAccessFile raf=new RandomAccessFile(demo,"rw");
 		
+		//写文件
 		System.out.println(raf.getFilePointer());
-		raf.write('A');                             //每次写一个字节
+		raf.write('A');                           //一个字符占用一个字节
 		System.out.println(raf.getFilePointer());
-		raf.write('B');
+		//raf.writeInt(1);                          //一个int型占用四个字节
 		System.out.println(raf.getFilePointer());
-		raf.writeInt(100);                          //一个int型包含四个字节
+		/*String str="中国";                         //一个中文字符占用两个字节
+		byte[] utf=str.getBytes("utf8");
+		raf.write(utf);*/                     
 		System.out.println(raf.getFilePointer());
-		String str="中";                         //这个字符串包含十个字节
-		raf.writeChars(str);
+		raf.writeUTF("中国");
 		System.out.println(raf.getFilePointer());
+		System.out.println("-----------------------------------");
+		//读文件
+		
+		raf.seek(0);
+		char ch=raf.readChar();
+		System.out.println(ch);
+		raf.seek(5);
+		System.out.println(raf.getFilePointer());
+		byte[] bytes=new byte[(int) raf.length()];
+		raf.read(bytes);
+		String bytesStr=new String(bytes);
+		System.out.println(bytesStr);
 		raf.close();
 	}
 }
