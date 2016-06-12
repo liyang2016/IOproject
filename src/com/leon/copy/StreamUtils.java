@@ -1,5 +1,7 @@
 package com.leon.copy;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -76,13 +78,42 @@ public class StreamUtils {
 	    while((index=fis.read())!=-1){
 	    	System.out.println(Integer.toBinaryString(index));
 	    }
-	    
-	    
 	    fis.close();
 	    fos.close();
 	}
 	
-	public static void copyByteArr(File scrFile,File destFile) throws IOException{
+	/**
+	 * 使用单个字节逐个读取，实现拷贝操作
+	 * @param scrFile
+	 * @param destFile
+	 * @throws IOException
+	 */
+	public static void copyByByte(File scrFile,File destFile) throws IOException{
+		if(!scrFile.exists()){
+			throw new IllegalArgumentException(scrFile+"不存在");
+		}
+		if(scrFile.isDirectory()){
+			throw new IllegalArgumentException(scrFile+"不是文件");
+		}
+		FileInputStream fis=new FileInputStream(scrFile);
+		FileOutputStream fos=new FileOutputStream(destFile);
+		
+		int b;
+		while((b=fis.read())!=-1){
+			fos.write(b);
+			fos.flush();
+		}
+		fos.close();
+		fis.close();
+	}
+	
+	/**
+	 * 使用字节数组读取，实现拷贝
+	 * @param scrFile
+	 * @param destFile
+	 * @throws IOException
+	 */
+	public static void copyByByteArr(File scrFile,File destFile) throws IOException{
 		if(!scrFile.exists()){
 			throw new IllegalArgumentException(scrFile+"不存在");
 		}
@@ -102,4 +133,29 @@ public class StreamUtils {
 		fis.close();
 	}
 	
+	/**
+	 * 使用缓冲读取，实现拷贝操作
+	 * @param scrFile
+	 * @param destFile
+	 * @throws IOException
+	 */
+	public static void copyByBuffer(File scrFile,File destFile) throws IOException{
+		if(!scrFile.exists()){
+			throw new IllegalArgumentException(scrFile+"不存在");
+		}
+		if(scrFile.isDirectory()){
+			throw new IllegalArgumentException(scrFile+"不是文件");
+		}
+		BufferedInputStream bis=new BufferedInputStream(
+				new FileInputStream(scrFile));
+		BufferedOutputStream bos=new BufferedOutputStream(
+				new FileOutputStream(destFile));
+		int c;
+		while((c=bis.read())!=-1){
+			bos.write(c);
+			bos.flush();
+		}
+		bos.close();
+		bis.close();
+	}
 }
