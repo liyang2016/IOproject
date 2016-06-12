@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class ByteStreamUtils {
 	/**
-	 * 
+	 * 打印文件内容到控制台
 	 * @param filename
 	 * @throws IOException 
 	 */

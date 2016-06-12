@@ -21,13 +21,12 @@
       DataOutputStream-->writeXxx()方法会方便一些，相当于一瓢一瓢把水“转移”过去
       BufferedOutputStream--->write方法更方便，相当于一飘一瓢先放入桶中，再从桶中倒入到另一个缸中，性能提高了
 3)字符流
-	字符的处理，一次处理一个字符
-	字符的底层任然是基本的字节序列
+	字符的处理:一次处理一个字符,字符的底层任然是基本的字节序列
 	字符流的基本实现
-   	InputStreamReader   完成byte流解析为char流,按照编码解析
-   	OutputStreamWriter  提供char流到byte流，按照编码处理  
-   
-   	FileReader/FileWriter
- 	字符流的过滤器
-   	BufferedReader   ---->readLine 一次读一行
-   	BufferedWriter/PrintWriter   ---->写一行    
+   	a)InputStreamReader && OutputStreamWriter类  
+   	  InputStreamReader  完成byte流解析为char流,按照编码解析
+   	  OutputStreamWriter 提供char流到byte流，按照编码处理  
+	b)FileReader && FileWriter类
+	c)BufferedReader && BufferedWriter类
+   	  BufferedReader   			   ---->readLine 一次读一行
+   	  BufferedWriter/PrintWriter   ---->写一行    

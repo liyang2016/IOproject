@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class StreamUtils {
+public class ByteStreamUtils {
 	/**
 	 * 读取指定文件内容，按照十六进制输出到控制台
 	 * 逐个读取到Byte
