@@ -4,6 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+/**
+ * 
+ * 使用RandomAccessFile文件
+ * 向文件写入和从文件读出数据
+ * @author Administrator
+ *
+ */
 public class RandomAccessFileDemo {
 	public static void main(String[] args)throws IOException {
 		File file=new File("test");

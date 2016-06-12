@@ -1,6 +1,8 @@
 package com.leon.copy;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ByteStreamUtils {
@@ -60,5 +62,28 @@ public class ByteStreamUtils {
 		fis.close();
 	}
 	
+	public static void output() throws IOException{
+		String filename="test"+File.separator+"outputDemo.txt";
+	    FileOutputStream fos=new FileOutputStream(filename);
+	    FileInputStream fis=new FileInputStream(filename);
+	    fos.write('a');
+	    int a=1;
+	    fos.write(a>>>24);
+	    fos.write(a>>>16);
+	    fos.write(a>>>8);
+	    fos.write(a);
+	    int index;
+	    while((index=fis.read())!=-1){
+	    	System.out.println(Integer.toBinaryString(index));
+	    }
+	    
+	    
+	    fis.close();
+	    fos.close();
+	}
+	
+	public static void copyByteArr(){
+		
+	}
 	
 }
